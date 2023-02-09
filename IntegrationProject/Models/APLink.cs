@@ -12,9 +12,9 @@ namespace IntegrationProject.Models
 
         public string? GUID { get; set; }
 
-        public string? AccountingProviderID { get; set; }
-
         public ProviderInfo? provider { get; set; }
+
+        public CompanyInfo? company { get; set; }
 
         public DateInfo? date { get; set; }
     }

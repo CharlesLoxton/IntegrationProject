@@ -8,6 +8,7 @@ namespace IntegrationProject.Interfaces
 {
     internal interface IInvoice : IEntity
     {
+        //We will add all the Invoice specific properties here
         public string InvoiceName { get; set; }
     }
 }

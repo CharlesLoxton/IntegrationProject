@@ -62,7 +62,7 @@ namespace IntegrationProject.Data
             return null;
         }
 
-        public void AddClient(KDBcontext context, Client client)
+        public void AddClient(KDBcontext context, IClient client)
         {
             Console.WriteLine("Saving Client in KOST");
         }

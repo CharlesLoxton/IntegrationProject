@@ -2,10 +2,7 @@
 {
     internal class ProviderInfo
     {
+        public string? AccountingProviderID { get; set; }
         public string? AccountingProviderName { get; set; }
-
-        public int? ComapnyID { get; set; }
-
-        public string? ComapnyName { get; set; }
     }
 }

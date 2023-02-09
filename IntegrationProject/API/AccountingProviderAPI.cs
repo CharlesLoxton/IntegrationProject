@@ -60,10 +60,13 @@ namespace IntegrationProject.API
                     {
                         UserID = entity.UserId,
                         GUID = response.Reference,
-                        AccountingProviderID = response.response_Id,
                         provider = new ProviderInfo()
                         {
+                            AccountingProviderID = response.response_Id,
                             AccountingProviderName = provider,
+                        },
+                        company = new CompanyInfo()
+                        {
                             ComapnyID = response.companyId,
                             ComapnyName = response.CompanyName,
                         },

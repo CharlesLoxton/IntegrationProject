@@ -49,7 +49,7 @@ namespace IntegrationProject.Factory
             }
             catch (Exception ex)
             {
-                throw new Exception("Error: " + ex.Message);
+                throw new Exception(ex.Message);
             }
         }
 

@@ -8,6 +8,7 @@ namespace IntegrationProject.Interfaces
 {
     internal interface IQuote : IEntity
     {
+        //We will add all the Quote specific properties here
         public string QuotationName { get; set; }
     }
 }

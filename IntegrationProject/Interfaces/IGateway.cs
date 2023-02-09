@@ -23,6 +23,6 @@ namespace IntegrationProject.Interfaces
 
         public IEnumerable<Client> RetrieveAllClients(KDBcontext context); //Yield return a list of clients where Kost.UserID = this.UserID
 
-        public void AddClient(KDBcontext context, Client client); //Add a client for a user where Kost.UserID = this.UserID
+        public void AddClient(KDBcontext context, IClient client); //Add a client for a user where Kost.UserID = this.UserID
     }
 }

@@ -1,10 +1,5 @@
 ﻿using IntegrationProject.Data;
 using IntegrationProject.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace IntegrationProject.Factory
 {
@@ -21,24 +16,23 @@ namespace IntegrationProject.Factory
             _context = context;
         }
 
-        public IEntity_Actions Client()
+        public IEntity_Actions<IClient> Client()
         {
-            return new EntityHandler(_gateway, _context, _provider, "Client");
+            return new EntityHandler<IClient>(_gateway, _context, _provider, "Client");
         }
 
-        public IEntity_Actions Invoice()
+        public IEntity_Actions<IInvoice> Invoice()
         {
-            return new EntityHandler(_gateway, _context, _provider, "Invoice");
+            return new EntityHandler<IInvoice>(_gateway, _context, _provider, "Invoice");
         }
 
-        public IEntity_Actions Quote()
+        public IEntity_Actions<IQuote> Quote()
         {
-            return new EntityHandler(_gateway, _context, _provider, "Quote");
+            return new EntityHandler<IQuote>(_gateway, _context, _provider, "Quote");
         }
-        public IEntity_Actions PurchaseOrder()
+        public IEntity_Actions<IPurchaseOrder> PurchaseOrder()
         {
-            return new EntityHandler(_gateway, _context, _provider, "PurchaseOrder");
+            return new EntityHandler<IPurchaseOrder>(_gateway, _context, _provider, "PurchaseOrder");
         }
-
     }
 }

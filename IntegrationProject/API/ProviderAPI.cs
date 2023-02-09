@@ -1,22 +1,32 @@
 ﻿using IntegrationProject.Data;
+using IntegrationProject.Factory;
 using IntegrationProject.Interfaces;
 using IntegrationProject.Models;
 
 namespace IntegrationProject.API
 {
-    internal class AccountingProviderAPI
+    internal class ProviderAPI
     {
         KDBcontext _context;
         IGateway _gateway;
+        IAPI_Actions? API;
+        string provider;
+        string type;
 
-        public AccountingProviderAPI(KDBcontext context, IGateway gateway)
+        public ProviderAPI(KDBcontext context, IGateway gateway, string _provider, string _type)
         {
             _context = context;
             _gateway = gateway;
+            provider = _provider;
+            type = _type;
+
+            API = new EntityProviderFactory().SetProviderEntityAPI(provider, type);
+
+            if(API == null) throw new ArgumentException("API is null");
         }
 
         //This is a universal way of Posting for all entities
-        public void Post(IEntity entity, string provider, string type)
+        public void Post(IEntity entity)
         {
             try
             {
@@ -33,26 +43,15 @@ namespace IntegrationProject.API
                     //Updating the Entity in AP happens here
                 }
 
-                else//This would be a first time Create
+                //This would be a first time Create
+                else
                 {
                     string guid = Guid.NewGuid().ToString();
 
                     entity.Guid = guid;
 
-                    switch (provider)
-                    {
-                        case "Sage":
-                            response = new SageAPI().PostSage(entity, type);
-                            break;
-                        case "Xero":
-                            //response = new XeroAPI().PostXero(entity, ReturnType(entity));
-                            break;
-                        case "Quickbooks":
-                            //response = new QuickBooksAPI().PostQuickBooks(entity, ReturnType(entity));
-                            break;
-                        default:
-                            throw new ArgumentException("Invalid provider name");
-                    }
+                    //Make the Post to the corresponding API and entity type
+                    response = API?.Post(entity);
 
                     if (response == null) return;
                     
@@ -87,7 +86,7 @@ namespace IntegrationProject.API
             }
             catch (Exception ex)
             {
-                throw new Exception("Error in Posting to Sage " + ex.Message);
+                throw new Exception("Error in Posting to Provider API " + ex.Message);
             }
         }
     }

@@ -36,11 +36,11 @@ IGateway gateway = new Gateway(userID);
 factory.CreateConnection("Sage", gateway);
 
 //Create our providerFactory that will handle calls to the api
-AccountingProvider providerFactory = factory.CreateAccountingProvider(gateway);
+AccountingProvider provider = factory.CreateAccountingProvider(gateway);
 
 //Create the Entities for that accounting provider and do an upsert
-providerFactory.Client().Upsert(client);
-providerFactory.Invoice().Upsert(invoice);
+provider.Client().Upsert(client);
+provider.Invoice().Upsert(invoice);
 
 //Disconnect the current accounting provider
 factory.Disconnect(gateway);

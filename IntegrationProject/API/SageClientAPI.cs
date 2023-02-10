@@ -25,9 +25,19 @@ namespace IntegrationProject.API
             throw new NotImplementedException();
         }
 
-        public IEntity Read(int? accountingProviderId)
+        public IEntity Read(int accountingProviderId)
         {
             throw new NotImplementedException();
+        }
+
+        public void Accept(IAPI_Visitor visitor)
+        {
+            visitor.Visit(this);
+        }
+
+        public bool IsMatch(IEntity entity, string provider)
+        {
+            return entity is IClient && provider == "Sage";
         }
     }
 }

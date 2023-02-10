@@ -49,17 +49,9 @@ namespace IntegrationProject.Data
             Console.WriteLine("Saving APLink in KOST");
         }
 
-        public void SaveGUID(KDBcontext context, string entityName, int entityID, string guid)
+        public void SaveGUID(KDBcontext context, IEntity entity, int entityID, string guid)
         {
-            Console.WriteLine("Saving guid in KOST");
-        }
-
-        public APLink FindAPLinkByGUID(KDBcontext context, string guid, string accountingProviderName)
-        {
-            Console.WriteLine("Finding APLink in KOST");
-
-            //return an APLink object if the guid and APname matches in the table
-            return null;
+            Console.WriteLine("Saving guid in KOST for " + entity.GetType().Name);
         }
 
         public void AddClient(KDBcontext context, IClient client)

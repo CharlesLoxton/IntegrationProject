@@ -10,7 +10,7 @@ namespace IntegrationProject.Factory
         {
             _context = context;
         }
-        public AccountingProvider CreateAccountingProvider(IGateway gateway)
+        public IEntity_Actions CreateAccountingProvider(IGateway gateway)
         {
             Console.WriteLine("Checking if the user has a selected a provider");
 
@@ -18,9 +18,9 @@ namespace IntegrationProject.Factory
 
             if (provider == null) throw new Exception("Provider is null");
 
-            Console.WriteLine("Creating Accounting provider class");
+            Console.WriteLine("Creating Entity Handler class");
 
-            return new AccountingProvider(gateway, provider, _context);
+            return new EntityHandler(gateway, _context, provider);
         }
 
         public void CreateConnection(string provider, IGateway gateway)

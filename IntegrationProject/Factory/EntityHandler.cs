@@ -4,26 +4,24 @@ using IntegrationProject.API;
 
 namespace IntegrationProject.Factory
 {
-    class EntityHandler<TEntity> : IEntity_Actions<TEntity> where TEntity : IEntity
+    class EntityHandler : IEntity_Actions
     {
         IGateway _gateway;
         KDBcontext _context;
         string _provider;
-        string _type;
 
-        public EntityHandler(IGateway gateway, KDBcontext context, string provider, string type)
+        public EntityHandler(IGateway gateway, KDBcontext context, string provider)
         {
             _gateway = gateway;
             _context = context;
             _provider = provider;
-            _type = type;
         }
 
-        public void Upsert(TEntity entity)
+        public void Upsert(IEntity entity)
         {
             try
             {
-                ProviderAPI api = new ProviderAPI(_context, _gateway, _provider, _type);
+                ProviderAPI api = new ProviderAPI(_context, _gateway, _provider);
 
                 //We need to check if Neil is using transactions, if he isn't then we have to manually create a transaction in EF core
                 if (_context.Database.CurrentTransaction != null)
@@ -58,7 +56,7 @@ namespace IntegrationProject.Factory
             throw new NotImplementedException();
         }
 
-        public TEntity Read(int? accountingProviderId)
+        public IEntity Read(int accountingProviderId)
         {
             throw new NotImplementedException();
         }

@@ -7,10 +7,10 @@ using System.Threading.Tasks;
 
 namespace IntegrationProject.Interfaces
 {
-    internal interface IEntity_Actions<TEntity> where TEntity : IEntity
+    internal interface IEntity_Actions
     {
-        void Upsert(TEntity entity);
-        TEntity Read(int? accountingProviderId);
+        void Upsert(IEntity entity);
+        IEntity Read(int accountingProviderId);
         void Delete(int accountingProviderId);
         void Sync();
     }

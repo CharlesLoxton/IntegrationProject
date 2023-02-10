@@ -1,4 +1,5 @@
-﻿using IntegrationProject.Data;
+﻿using IntegrationProject.Composite;
+using IntegrationProject.Data;
 using IntegrationProject.Factory;
 using IntegrationProject.Interfaces;
 using IntegrationProject.Models;
@@ -9,20 +10,13 @@ namespace IntegrationProject.API
     {
         KDBcontext _context;
         IGateway _gateway;
-        IAPI_Actions? API;
         string provider;
-        string type;
 
-        public ProviderAPI(KDBcontext context, IGateway gateway, string _provider, string _type)
+        public ProviderAPI(KDBcontext context, IGateway gateway, string _provider)
         {
             _context = context;
             _gateway = gateway;
             provider = _provider;
-            type = _type;
-
-            API = new EntityProviderFactory().SetProviderEntityAPI(provider, type);
-
-            if(API == null) throw new ArgumentException("API is null");
         }
 
         //This is a universal way of Posting for all entities
@@ -30,14 +24,12 @@ namespace IntegrationProject.API
         {
             try
             {
-                IResponse? response = null;
-
                 string Token = _gateway.TokenRetrieval(_context);
 
                 //Check if client.GUID exists in our APLink table
                 if (entity.Guid != null)
                 {
-                    APLink link = _gateway.FindAPLinkByGUID(_context, entity.Guid, provider);
+                    //_context.APLink.Where(x => x.Guid == entity.Guid).ToListAsync());
                     //If it returns an APLink object we know it exists in Sage, but we should do a GET check to make sure
 
                     //Updating the Entity in AP happens here
@@ -51,9 +43,9 @@ namespace IntegrationProject.API
                     entity.Guid = guid;
 
                     //Make the Post to the corresponding API and entity type
-                    response = API?.Post(entity);
+                    IAPI_Actions api = new API_Composite().GetAPI(entity, provider);
 
-                    if (response == null) return;
+                    IResponse response = api.Post(entity);
                     
                     APLink link = new APLink()
                     {
@@ -76,7 +68,7 @@ namespace IntegrationProject.API
                         }
                     };
 
-                    _gateway.SaveGUID(_context, type, entity.Id, response.Reference);
+                    _gateway.SaveGUID(_context, entity, entity.Id, guid);
                     _gateway.SaveAPLink(_context, link);
                     _gateway.TokenSave(_context, Guid.NewGuid().ToString());
                 }

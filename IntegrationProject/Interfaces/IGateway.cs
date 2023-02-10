@@ -17,9 +17,7 @@ namespace IntegrationProject.Interfaces
 
         public void SaveAPLink(KDBcontext context, APLink link); //Add APLink object to APLink Table in KOST Database
 
-        public void SaveGUID(KDBcontext context, string entityName, int entityID, string guid); //Save the GUID for the corresponding entity object
-
-        public APLink FindAPLinkByGUID(KDBcontext context, string guid, string accountingProviderName); //return APLink where APLink.GUID = guid and APLink.accountingProviderName = accountingProviderName
+        public void SaveGUID(KDBcontext context, IEntity entity, int entityID, string guid); //Save the GUID for the corresponding entity object
 
         public IEnumerable<Client> RetrieveAllClients(KDBcontext context); //Yield return a list of clients where Kost.UserID = this.UserID
 

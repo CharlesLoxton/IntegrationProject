@@ -10,7 +10,7 @@ namespace IntegrationProject.API
             IClient client = (IClient)entity;
             Console.WriteLine("Posting Client to Sage");
 
-            return new SageClientResponse()
+            return new ClientResponse()
             {
                 response_Id = Guid.NewGuid().ToString(),
                 companyId = 34235,

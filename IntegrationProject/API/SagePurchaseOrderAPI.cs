@@ -9,7 +9,7 @@ namespace IntegrationProject.API
         {
             IPurchaseOrder PO = (IPurchaseOrder)entity;
 
-            return new SagePurchaseOrderResponse()
+            return new PurchaseOrderResponse()
             {
                 response_Id = Guid.NewGuid().ToString(),
                 companyId = 34235,

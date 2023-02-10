@@ -15,23 +15,25 @@ namespace IntegrationProject.Data
         public string RetrieveSelectedProvider(KDBcontext context)
         {
             Console.WriteLine("Retieving provider: Sage\n");
-            return "Sage";
+            return context.Provider; ;
         }
 
         public void SaveSelectedProvider(KDBcontext context, string provider)
         {
+            context.Provider = provider;
             Console.WriteLine("Saving provider with name: " + provider);
         }
 
         public string TokenRetrieval(KDBcontext context)
         {
             Console.WriteLine("Retrieving token");
-            return "123";
+            return context.Token;
         }
 
         public void TokenSave(KDBcontext context, string token)
         {
             Console.WriteLine("Saving token in KOST");
+            context.Token = token;
         }
 
         public IEnumerable<Client> RetrieveAllClients(KDBcontext context)
@@ -42,11 +44,6 @@ namespace IntegrationProject.Data
             {
                 yield return item;
             }
-        }
-
-        public void SaveAPLink(KDBcontext context, APLink link)
-        {
-            Console.WriteLine("Saving APLink in KOST");
         }
 
         public void SaveGUID(KDBcontext context, IEntity entity, int entityID, string guid)

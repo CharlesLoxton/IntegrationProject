@@ -25,12 +25,24 @@ namespace IntegrationProject.Factory
 
         public void CreateConnection(string provider, IGateway gateway)
         {
-            if (provider == "Sage")
+            switch(provider)
             {
-                Console.WriteLine("Creating Initial connection with Sage");
-                gateway.TokenSave(_context, Guid.NewGuid().ToString());
-                gateway.SaveSelectedProvider(_context, provider);
-            }
+                case "Sage":
+                    Console.WriteLine("Creating Initial connection with Sage");
+                    gateway.TokenSave(_context, Guid.NewGuid().ToString());
+                    gateway.SaveSelectedProvider(_context, provider);
+                    break;
+                case "Xero":
+                    Console.WriteLine("Creating Initial connection with Xero");
+                    gateway.TokenSave(_context, Guid.NewGuid().ToString());
+                    gateway.SaveSelectedProvider(_context, provider);
+                    break;
+                case "QuickBooks":
+                    Console.WriteLine("Creating Initial connection with QuickBooks");
+                    gateway.TokenSave(_context, Guid.NewGuid().ToString());
+                    gateway.SaveSelectedProvider(_context, provider);
+                    break;
+            }                    
         }
 
         public void Disconnect(IGateway gateway)

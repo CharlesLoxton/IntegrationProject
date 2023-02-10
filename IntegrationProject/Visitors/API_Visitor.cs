@@ -20,31 +20,7 @@ namespace IntegrationProject.Visitors
             this.provider = provider;
         }
 
-        public void Visit(SageClientAPI api)
-        {
-            if (Result == null && api.IsMatch(entity, provider))
-            {
-                Result = api;
-            }
-        }
-
-        public void Visit(SageInvoiceAPI api)
-        {
-            if (Result == null && api.IsMatch(entity, provider))
-            {
-                Result = api;
-            }
-        }
-
-        public void Visit(SageQuoteAPI api)
-        {
-            if (Result == null && api.IsMatch(entity, provider))
-            {
-                Result = api;
-            }
-        }
-
-        public void Visit(SagePurchaseOrderAPI api)
+        public void Visit(IAPI_Actions api)
         {
             if (Result == null && api.IsMatch(entity, provider))
             {

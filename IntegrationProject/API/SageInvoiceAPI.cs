@@ -11,7 +11,7 @@ namespace IntegrationProject.API
 
             IInvoice invoice = (IInvoice)entity;
 
-            return new SageInvoiceResponse()
+            return new InvoiceResponse()
             {
                 response_Id = Guid.NewGuid().ToString(),
                 companyId = 34235,

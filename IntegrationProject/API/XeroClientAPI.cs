@@ -3,18 +3,20 @@ using IntegrationProject.Responses;
 
 namespace IntegrationProject.API
 {
-    internal class SageQuoteAPI : IAPI_Actions
+    internal class XeroClientAPI : IAPI_Actions
     {
         public IResponse Post(IEntity entity)
         {
-            IQuote quote = (IQuote)entity;
-            return new QuoteResponse()
+            IClient client = (IClient)entity;
+            Console.WriteLine("Posting Client to Xero");
+
+            return new ClientResponse()
             {
                 response_Id = Guid.NewGuid().ToString(),
-                companyId = 34235,
+                companyId = 7658,
                 CompanyName = "BoBTheBuilder",
-                QuotationName = quote.QuotationName,
-                Reference = quote.Guid
+                Name = client.Name,
+                Reference = client.Guid
             };
         }
 
@@ -35,7 +37,7 @@ namespace IntegrationProject.API
 
         public bool IsMatch(IEntity entity, string provider)
         {
-            return entity is IQuote && provider == "Sage";
+            return entity is IClient && provider == "Xero";
         }
     }
 }

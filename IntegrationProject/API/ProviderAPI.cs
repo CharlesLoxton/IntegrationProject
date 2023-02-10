@@ -29,7 +29,7 @@ namespace IntegrationProject.API
                 //Check if client.GUID exists in our APLink table
                 if (entity.Guid != null)
                 {
-                    //_context.APLink.Where(x => x.Guid == entity.Guid).ToListAsync());
+                    //APLink? link = _context.APLink.FirstOrDefault(x => x.GUID == entity.Guid && x.provider.AccountingProviderName == provider);
                     //If it returns an APLink object we know it exists in Sage, but we should do a GET check to make sure
 
                     //Updating the Entity in AP happens here
@@ -69,12 +69,11 @@ namespace IntegrationProject.API
                     };
 
                     _gateway.SaveGUID(_context, entity, entity.Id, guid);
-                    _gateway.SaveAPLink(_context, link);
+                    _context.APLink.Add(link);
                     _gateway.TokenSave(_context, Guid.NewGuid().ToString());
                 }
 
-                Console.WriteLine("Creating Entity Completed");
-                Console.WriteLine("\n");
+                _context.SaveChanges();
             }
             catch (Exception ex)
             {

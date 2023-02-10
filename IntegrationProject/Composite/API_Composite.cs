@@ -11,7 +11,10 @@ namespace IntegrationProject.Composite
             new SageClientAPI(),
             new SageInvoiceAPI(),
             new SageQuoteAPI(),
-            new SagePurchaseOrderAPI()
+            new SagePurchaseOrderAPI(),
+            new XeroClientAPI(),
+            new XeroInvoiceAPI()
+            //Add the rest here
         };
 
         public IAPI_Actions GetAPI(IEntity entity, string provider)
@@ -23,7 +26,7 @@ namespace IntegrationProject.Composite
                 api.Accept(visitor);
             }
 
-            return visitor.Result;
+            return visitor.Result ?? throw new ArgumentNullException("Result is null");
         }
     }
 }

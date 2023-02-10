@@ -11,6 +11,6 @@ namespace IntegrationProject.Interfaces
         //These are properties that are universal for all entities
         public int Id { get; set; }
         public int UserId { get; set; }
-        public string? Guid { get; set; }
+        public string Guid { get; set; }
     }
 }

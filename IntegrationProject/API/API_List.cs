@@ -12,7 +12,7 @@ namespace IntegrationProject.API
             new SagePurchaseOrderAPI(),
             new XeroClientAPI(),
             new XeroInvoiceAPI()
-            //Add the rest here
+            //Add the rest for Xero and QB here
         };
 
         public IAPI_Actions GetAPI(IEntity entity, string provider)

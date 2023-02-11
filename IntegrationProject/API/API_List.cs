@@ -1,10 +1,8 @@
-﻿using IntegrationProject.API;
-using IntegrationProject.Interfaces;
-using IntegrationProject.Visitors;
+﻿using IntegrationProject.Interfaces;
 
-namespace IntegrationProject.Composite
+namespace IntegrationProject.API
 {
-    internal class API_Composite
+    internal class API_List
     {
         private readonly List<IAPI_Actions> _apis = new List<IAPI_Actions>
         {
@@ -19,14 +17,15 @@ namespace IntegrationProject.Composite
 
         public IAPI_Actions GetAPI(IEntity entity, string provider)
         {
-            API_Visitor visitor = new API_Visitor(entity, provider);
-
             foreach (IAPI_Actions api in _apis)
             {
-                api.Accept(visitor);
+                if (api.IsMatch(entity, provider))
+                {
+                    return api;
+                }
             }
 
-            return visitor.Result ?? throw new ArgumentNullException("Result is null");
+            throw new ArgumentNullException("API is null");
         }
     }
 }

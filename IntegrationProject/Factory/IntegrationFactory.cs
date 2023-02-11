@@ -18,7 +18,7 @@ namespace IntegrationProject.Factory
 
             if (provider == null) throw new Exception("Provider is null");
 
-            Console.WriteLine("Creating Entity Handler class");
+            Console.WriteLine("Creating Entity Handler class\n");
 
             return new EntityHandler(gateway, _context, provider);
         }
@@ -29,20 +29,19 @@ namespace IntegrationProject.Factory
             {
                 case "Sage":
                     Console.WriteLine("Creating Initial connection with Sage");
-                    gateway.TokenSave(_context, Guid.NewGuid().ToString());
-                    gateway.SaveSelectedProvider(_context, provider);
                     break;
                 case "Xero":
                     Console.WriteLine("Creating Initial connection with Xero");
-                    gateway.TokenSave(_context, Guid.NewGuid().ToString());
-                    gateway.SaveSelectedProvider(_context, provider);
                     break;
                 case "QuickBooks":
                     Console.WriteLine("Creating Initial connection with QuickBooks");
-                    gateway.TokenSave(_context, Guid.NewGuid().ToString());
-                    gateway.SaveSelectedProvider(_context, provider);
                     break;
-            }                    
+                default:
+                    throw new ArgumentException("Invalid Provider");
+            }
+
+            gateway.TokenSave(_context, Guid.NewGuid().ToString());
+            gateway.SaveSelectedProvider(_context, provider);
         }
 
         public void Disconnect(IGateway gateway)

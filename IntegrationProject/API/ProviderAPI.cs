@@ -1,5 +1,4 @@
-﻿using IntegrationProject.Composite;
-using IntegrationProject.Data;
+﻿using IntegrationProject.Data;
 using IntegrationProject.Factory;
 using IntegrationProject.Interfaces;
 using IntegrationProject.Models;
@@ -43,7 +42,7 @@ namespace IntegrationProject.API
                     entity.Guid = guid;
 
                     //Make the Post to the corresponding API and entity type
-                    IAPI_Actions api = new API_Composite().GetAPI(entity, provider);
+                    IAPI_Actions api = new API_List().GetAPI(entity, provider);
 
                     IResponse response = api.Post(entity);
                     

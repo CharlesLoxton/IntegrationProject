@@ -19,7 +19,7 @@ namespace IntegrationProject.Interfaces
 
         public string RetrieveSelectedProvider(KDBcontext context); //Retrieve the provider Name where Kost.UserID = this.UserID
 
-        public void SaveGUID(KDBcontext context, IEntity entity, int entityID, string guid); //Save the GUID for the corresponding entity object
+        public void SaveGUID(KDBcontext context, IEntity entity, string guid); //Save the GUID for the corresponding entity object
 
         public IEnumerable<IEntity> RetrieveAllEntities(KDBcontext context, IEntity entity); //Yield return a list of clients where Kost.UserID = this.UserID
 

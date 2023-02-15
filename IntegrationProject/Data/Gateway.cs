@@ -48,7 +48,7 @@ namespace IntegrationProject.Data
             //Add the rest here
         }
 
-        public void SaveGUID(KDBcontext context, IEntity entity, int entityID, string guid)
+        public void SaveGUID(KDBcontext context, IEntity entity, string guid)
         {
             Console.WriteLine("Saving guid in KOST for " + entity.GetType().Name);
         }

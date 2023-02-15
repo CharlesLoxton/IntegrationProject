@@ -48,7 +48,6 @@ namespace IntegrationProject.API
                     
                     APLink link = new APLink()
                     {
-                        UserID = entity.UserId,
                         GUID = response.Reference,
                         provider = new ProviderInfo()
                         {

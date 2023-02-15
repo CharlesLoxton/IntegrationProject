@@ -55,12 +55,6 @@ namespace IntegrationProject.Factory
         {
             throw new NotImplementedException();
         }
-
-        public IEntity Read(int accountingProviderId)
-        {
-            throw new NotImplementedException();
-        }
-
         public void Sync()
         {
             throw new NotImplementedException();

@@ -28,11 +28,13 @@ IInvoice invoice = new Invoice()
 //services.AddDbContext<KDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 //services.AddSingleton<IntegrationFactory>(provider => new IntegrationFactory(provider.GetService<KDbContext>()));
 
+
 var factory = new IntegrationFactory(context);
 
+//Instantiate a gateway with the userID in every route of your controllers
 IGateway gateway = new Gateway(userID);
 
-//Connect to the accounting provider
+//This is how you connect a user with an Accounting Provider
 factory.CreateConnection("Sage", gateway);
 
 //Create our EntityHandler that will handle calls to the api

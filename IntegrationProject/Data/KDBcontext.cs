@@ -13,8 +13,11 @@ namespace IntegrationProject.Data
         public Database Database;
         public string Provider { get; set; } = string.Empty;
         public string Token { get; set; } = string.Empty;
+        public string providerInstance { get; set; } = string.Empty;
 
         public List<APLink> APLink = new List<APLink>();
+
+        public List<Client> Clients = new List<Client>();
 
         public KDBcontext() 
         {

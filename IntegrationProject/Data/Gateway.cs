@@ -36,14 +36,16 @@ namespace IntegrationProject.Data
             context.Token = token;
         }
 
-        public IEnumerable<Client> RetrieveAllClients(KDBcontext context)
+        public IEnumerable<IEntity> RetrieveAllEntities(KDBcontext context, IEntity entity)
         {
-            List<Client> clients = new List<Client>();
-
-            foreach (var item in clients)
+            if(entity is IClient)
             {
-                yield return item;
+                foreach (var item in context.Clients)
+                {
+                    yield return item;
+                }
             }
+            //Add the rest here
         }
 
         public void SaveGUID(KDBcontext context, IEntity entity, int entityID, string guid)
@@ -54,6 +56,18 @@ namespace IntegrationProject.Data
         public void AddClient(KDBcontext context, IClient client)
         {
             Console.WriteLine("Saving Client in KOST");
+        }
+
+        public void SaveProviderInstance(KDBcontext context, string id)
+        {
+            Console.WriteLine("Saving Provider Instance in KOST");
+            context.providerInstance = id;
+        }
+
+        public string RetrieveProviderInstance(KDBcontext context)
+        {
+            Console.WriteLine("Retrieving Provider Instance in KOST");
+            return context.providerInstance;
         }
     }
 }

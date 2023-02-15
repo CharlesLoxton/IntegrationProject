@@ -10,7 +10,6 @@ namespace IntegrationProject.Interfaces
     internal interface IEntity_Actions
     {
         void Upsert(IEntity entity);
-        IEntity Read(int accountingProviderId);
         void Delete(int accountingProviderId);
         void Sync();
     }
